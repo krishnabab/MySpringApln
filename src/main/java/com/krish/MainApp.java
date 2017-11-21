@@ -1,5 +1,7 @@
 package com.krish;
 
+import java.util.Map;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -8,9 +10,7 @@ public class MainApp {
       ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
       HelloWorld obj = (HelloWorld) context.getBean("helloWorld");
       obj.getMessage();
-      Circle circleObj = (Circle) context.getBean("circle");
-      circleObj.area();
-      Triangle tObj = (Triangle) context.getBean("triangle");
-      tObj.area();
+      Map<String,ObjectShape> circleObj =  context.getBeansOfType(ObjectShape.class);
+      circleObj.values().forEach(e->e.area());
    }
 }
